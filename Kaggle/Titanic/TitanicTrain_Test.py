@@ -28,13 +28,7 @@ df.loc[(df['Age'].isnull()) & (df['Name'].str.contains(r'Mrs\b')), 'Age'] = df['
 df.loc[(df['Age'].isnull()) & (df['Name'].str.contains(r'Master\b')),'Age'] = df['Age'][(df['Age'].isnull()) & (df['Name'].str.contains(r'Master\b'))].fillna(value = master)
 df.loc[(df['Age'].isnull()) & (df['Name'].str.contains(r'Miss\b')), 'Age'] = df['Age'][(df['Age'].isnull()) & (df['Name'].str.contains(r'Miss\b'))].fillna(value = miss) 
 df.loc[(df['Age'].isnull()) & (df['Name'].str.contains(r'Dr\b')),'Age'] = df['Age'][(df['Age'].isnull()) & (df['Name'].str.contains(r'Dr\b'))].fillna(value = dr) 
-"""
-df['Age'][(df['Age'].isnull()) & (df['Name'].str.contains(r'Mr\b'))] = df['Age'][(df['Age'].isnull()) & (df['Name'].str.contains(r'Mr\b'))].fillna(value = mr)
-df['Age'][(df['Age'].isnull()) & (df['Name'].str.contains(r'Mrs\b'))] = df['Age'][(df['Age'].isnull()) & (df['Name'].str.contains(r'Mrs\b'))].fillna(value = mrs)
-df['Age'][(df['Age'].isnull()) & (df['Name'].str.contains(r'Master\b'))] = df['Age'][(df['Age'].isnull()) & (df['Name'].str.contains(r'Master\b'))].fillna(value = master)
-df['Age'][(df['Age'].isnull()) & (df['Name'].str.contains(r'Miss\b'))] = df['Age'][(df['Age'].isnull()) & (df['Name'].str.contains(r'Miss\b'))].fillna(value = miss)
-df['Age'][(df['Age'].isnull()) & (df['Name'].str.contains(r'Dr\b'))] = df['Age'][(df['Age'].isnull()) & (df['Name'].str.contains(r'Dr\b'))].fillna(value = dr)
-"""
+
 df['Sex'] = df['Sex'].astype('category')
 df['S_code'] = df['Sex'].cat.codes
 
@@ -91,11 +85,11 @@ Test Data
 4       3  22.0      1      1       0
 """
 
-"""
+
 X = df.values[:,1:6]
 y = df.values[:, 0]
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = 100)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 100)
 
 clf = RandomForestClassifier()
 
@@ -103,7 +97,6 @@ tModel = clf.fit(X_train, y_train)
 y_pred = tModel.predict(X_test)
 print("Accuracy:", accuracy_score(y_test, y_pred) * 100)
 """
-
 #Split Data
 X_train = df.values[:,1:6]
 y_train = df.values[:, 0]
@@ -121,3 +114,4 @@ df2 = pd.DataFrame(data = np.c_[p_id, y_pred], columns = ['PassengerId','Survive
 print(df2.head())
 df2 = df2.astype('int32')
 df2.to_csv('result.csv', sep=',', index=False)
+"""
