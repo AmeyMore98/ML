@@ -10,7 +10,7 @@ os.chdir(r'C:\Users\Amay\Desktop\Sem6\ML\Datasets')
 df2 = pd.read_csv('pima_diabetes.csv')
 
 df = pd.get_dummies(df2)
-print(df.head())
+#print(df.head())
 
 X = df.values[:, :8]
 Y =  df.values[:, 8]
@@ -24,7 +24,7 @@ gnb = GaussianNB()
 
 model = gnb.fit(X_train, y_train)
 
-y_pred = model.predict(y_test.reshape(-1,1))
+y_pred = model.predict(X_test)
 
 #print(y_pred, y_test)
 print("Accuracy:", accuracy_score(y_test, y_pred) * 100)
